@@ -27,28 +27,43 @@ public class ContaRepository {
     @WorkerThread
     public void atualizar(Conta c) {
         //TODO implementar atualizar
+        // ANGELO ABAIXO
+        dao.atualizar(c);
+        // ANGELO ACIMA
     }
 
     @WorkerThread
     public void remover(Conta c) {
         //TODO implementar remover
+        // ANGELO ABAIXO
+        dao.remover(c);
+        // ANGELO ACIMA
     }
 
     @WorkerThread
     public List<Conta> buscarPeloNome(String nomeCliente) {
         //TODO implementar busca
-        return null;
+        // ANGELO ABAIXO
+        return dao.buscarPeloNome(nomeCliente);
+        // ANGELO ACIMA
+        //return null;
     }
 
     @WorkerThread
     public List<Conta> buscarPeloCPF(String cpfCliente) {
         //TODO implementar busca
-        return null;
+        // ANGELO ABAIXO
+        return dao.buscarPeloCPF(cpfCliente);
+        // ANGELO ACIMA
+        //return null;
     }
 
     @WorkerThread
     public Conta buscarPeloNumero(String numeroConta) {
         //TODO implementar busca
-        return null;
+        // ANGELO ABAIXO
+        return dao.buscarPeloNumero(numeroConta);
+        // ANGELO ACIMA
+        //return null;
     }
 }

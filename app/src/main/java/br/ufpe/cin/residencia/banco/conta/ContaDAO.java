@@ -19,9 +19,24 @@ public interface ContaDAO {
 
     //TODO incluir métodos para atualizar conta e remover conta
 
+    // ANGELO ABAIXO
+    @Update
+    void atualizar(Conta c);
+    @Delete
+    void remover(Conta c);
+    // ANGELO ACIMA
+
     @Query("SELECT * FROM contas ORDER BY numero ASC")
     LiveData<List<Conta>> contas();
 
     //TODO incluir métodos para buscar pelo (1) número da conta, (2) pelo nome e (3) pelo CPF do Cliente
 
+    // ANGELO ABAIXO
+    @Query("SELECT * FROM contas WHERE numero = :numeroProcurado")
+    Conta buscarPeloNumero(String numeroProcurado);
+    @Query("SELECT * FROM contas WHERE nomeCliente = :nomeProcurado")
+    List<Conta> buscarPeloNome(String nomeProcurado);
+    @Query("SELECT * FROM contas WHERE cpfCliente = :cpfProcurado")
+    List<Conta> buscarPeloCPF(String cpfProcurado);
+    // ANGELO ACIMA
 }

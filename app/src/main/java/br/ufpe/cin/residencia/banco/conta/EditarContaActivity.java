@@ -34,7 +34,9 @@ public class EditarContaActivity extends AppCompatActivity {
         Intent i = getIntent();
         String numeroConta = i.getStringExtra(KEY_NUMERO_CONTA);
         //TODO usar o número da conta passado via Intent para recuperar informações da conta
-
+        // ANGELO ABAIXO
+        viewModel.buscarPeloNumero(KEY_NUMERO_CONTA);
+        // ANGELO ACIMA
         btnAtualizar.setText("Editar");
         btnAtualizar.setOnClickListener(
                 v -> {

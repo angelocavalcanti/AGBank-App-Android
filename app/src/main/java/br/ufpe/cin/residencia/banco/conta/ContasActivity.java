@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.widget.Button;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import br.ufpe.cin.residencia.banco.R;
 
@@ -27,6 +28,18 @@ public class ContasActivity extends AppCompatActivity {
         adapter = new ContaAdapter(getLayoutInflater());
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);
+
+
+        // ANGELO ABAIXO
+        // Verificar:
+//        viewModel.contas.observe(
+//                this,
+//                novaListaContas -> {
+//                    List<Conta> novaLista = new ArrayList<>(novaListaContas);
+//                    adapter.atualizar(novaListaContas);
+//                });
+        // ANGELO ACIMA
+
 
         Button adicionarConta = findViewById(R.id.btn_Adiciona);
         adicionarConta.setOnClickListener(
