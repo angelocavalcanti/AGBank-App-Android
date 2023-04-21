@@ -29,17 +29,14 @@ public class ContasActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);
 
-
         // ANGELO ABAIXO
-        // Verificar:
-//        viewModel.contas.observe(
-//                this,
-//                novaListaContas -> {
-//                    List<Conta> novaLista = new ArrayList<>(novaListaContas);
-//                    adapter.atualizar(novaListaContas);
-//                });
+        viewModel.contas.observe(
+                this,
+                novaListaContas -> {
+                    List<Conta> novaLista = new ArrayList<>(novaListaContas);
+                    adapter.submitList(novaListaContas);
+                });
         // ANGELO ACIMA
-
 
         Button adicionarConta = findViewById(R.id.btn_Adiciona);
         adicionarConta.setOnClickListener(
