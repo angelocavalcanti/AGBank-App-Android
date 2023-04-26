@@ -34,7 +34,7 @@ public class ContasActivity extends AppCompatActivity {
                 this,
                 novaListaContas -> {
                     List<Conta> novaLista = new ArrayList<>(novaListaContas);
-                    adapter.submitList(novaListaContas);
+                    adapter.submitList(novaLista);
                 });
         // ANGELO ACIMA
 

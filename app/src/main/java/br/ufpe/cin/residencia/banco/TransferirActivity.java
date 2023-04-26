@@ -3,10 +3,12 @@ package br.ufpe.cin.residencia.banco;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 //Ver anotações TODO no código
 public class TransferirActivity extends AppCompatActivity {
@@ -36,9 +38,13 @@ public class TransferirActivity extends AppCompatActivity {
                     String numDestino = numeroContaDestino.getText().toString();
                     //TODO lembrar de implementar validação dos números das contas e do valor da operação, antes de efetuar a operação de transferência.
                     // O método abaixo está sendo chamado, mas precisa ser implementado na classe BancoViewModel para funcionar.
-                    double valor = Double.valueOf(valorOperacao.getText().toString());
+                    double valor = 0;
+                    if(!valorOperacao.getText().toString().equals("")){
+                        valor = Double.valueOf(valorOperacao.getText().toString());
+                    }
                     viewModel.transferir(numOrigem, numDestino, valor);
                     finish();
+                    viewModel.mensagem.observe(this, msg -> Toast.makeText(this, msg, Toast.LENGTH_SHORT).show());
                 }
         );
 

@@ -51,6 +51,7 @@
         android:fontFamily="sans-serif-light"
         android:hint="Digite um CPF"
         android:inputType="numberDecimal"
+        android:maxLength="11"
         android:minHeight="48dp"
         android:textSize="18sp" />
 
@@ -65,7 +66,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
-        android:inputType="numberDecimal"
+        android:inputType="numberDecimal|numberSigned"
         android:fontFamily="sans-serif-light"
         android:hint="Digite o saldo"
         android:minHeight="48dp"

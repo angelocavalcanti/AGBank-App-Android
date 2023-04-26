@@ -49,7 +49,8 @@ public class ContaViewModel extends AndroidViewModel {
         // ANGELO ABAIXO
         new Thread(() -> {
             Conta c = this.repository.buscarPeloNumero(numeroConta);
-        });
+            _contaAtual.postValue(c);
+        }).start();
         // ANGELO ACIMA
     }
 }

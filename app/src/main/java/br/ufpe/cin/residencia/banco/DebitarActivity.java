@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 //Ver anotações TODO no código
 public class DebitarActivity extends AppCompatActivity {
@@ -34,12 +35,16 @@ public class DebitarActivity extends AppCompatActivity {
 
         btnOperacao.setOnClickListener(
                 v -> {
-                    String numOrigem = numeroContaOrigem.getText().toString();
                     //TODO lembrar de implementar validação do número da conta e do valor da operação, antes de efetuar a operação de débito.
                     // O método abaixo está sendo chamado, mas precisa ser implementado na classe BancoViewModel para funcionar.
-                    double valor = Double.valueOf(valorOperacao.getText().toString());
+                    String numOrigem = numeroContaOrigem.getText().toString();
+                    double valor = 0;
+                    if(!valorOperacao.getText().toString().equals("")){
+                        valor = Double.valueOf(valorOperacao.getText().toString());
+                    }
                     viewModel.debitar(numOrigem, valor);
                     finish();
+                    viewModel.mensagem.observe(this, msg -> Toast.makeText(this, msg, Toast.LENGTH_SHORT).show());
                 }
         );
     }

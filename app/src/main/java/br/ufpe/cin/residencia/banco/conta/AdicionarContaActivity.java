@@ -15,7 +15,7 @@ import br.ufpe.cin.residencia.banco.R;
 public class AdicionarContaActivity extends AppCompatActivity {
 
     ContaViewModel viewModel;
-
+    public static final String regexSaldo = "-?\\d*+(\\.\\d*)?";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,26 +42,25 @@ public class AdicionarContaActivity extends AppCompatActivity {
 
                     // ANGELO ABAIXO
                     String msg="";
-                    if(nomeCliente != null && nomeCliente.length() >= 5) {
-                        if (validarCPF(cpfCliente)) {
-                            if(!numeroConta.isEmpty() && numeroConta != null) {
-                                if(!saldoConta.isEmpty() && saldoConta != null && saldoConta.matches(
-                                        "[0-9]+")) {
+                    if(!numeroConta.isEmpty()) {
+                        if(nomeCliente.length() >= 5) {
+                            if (validarCPF(cpfCliente)) {
+                                if(!saldoConta.isEmpty() && saldoConta.matches(regexSaldo)) {
                                     Conta c = new Conta(numeroConta, Double.valueOf(saldoConta),
-                                            nomeCliente, cpfCliente);
+                                            nomeCliente, cpfCliente );
                                     viewModel.inserir(c);
                                     finish();
                                 }else{
-                                    msg="Digite um saldo com números.";
+                                    msg="Digite um saldo com números";
                                 }
                             }else {
-                                msg = "Digite um número da conta.";
+                                msg = "Digite um CPF válido";
                             }
                         }else {
-                            msg = "Digite um CPF válido.";
+                            msg = "Digite um nome com no mínimo 5 caracteres";
                         }
                     }else {
-                        msg = "Digite um nome com no mínimo 5 caracteres.";
+                        msg = "Digite um número para a conta";
                     }
                     if (!msg.equals("")) {
                         Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
