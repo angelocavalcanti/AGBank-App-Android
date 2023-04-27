@@ -64,13 +64,47 @@ public class PesquisarActivity extends AppCompatActivity {
         // ANGELO ABAIXO
         viewModel.contas.observe(this, novaListaContas -> {
             if(!novaListaContas.isEmpty()){
-                adapter.submitList(novaListaContas);
                 rvResultado.setVisibility(View.VISIBLE);
             }else{
                 rvResultado.setVisibility(View.INVISIBLE);
                 Toast.makeText(this, "Nenhuma conta encontrada", Toast.LENGTH_SHORT).show();
             }
+            adapter.submitList(novaListaContas);
         });
-        // ANGELO ACIMA 123
+
+        // ANGELO ACIMA
+    }
+    protected void onStart (){ // criado para caso o usuário edite alguma conta encontrada na pesquisa, ao voltar, a tela é atualizada e mostra o resultado da pesquisa com os dados mais atuais da conta, sem precisar clicar no botão "pesquisar".
+        super.onStart();
+        RecyclerView rvResultado = findViewById(R.id.rvResultado);
+        EditText aPesquisar = findViewById(R.id.pesquisa);
+        RadioGroup tipoPesquisa = findViewById(R.id.tipoPesquisa);
+        String oQueFoiDigitado = aPesquisar.getText().toString();
+        //TODO implementar a busca de acordo com o tipo de busca escolhido pelo usuário
+        // ANGELO ABAIXO
+        if(oQueFoiDigitado.equals("")){
+            Toast.makeText(this, "Digite algum termo para pesquisar", Toast.LENGTH_SHORT).show();
+        }else{
+            switch(tipoPesquisa.getCheckedRadioButtonId()) {
+                case R.id.peloNomeCliente:
+                    viewModel.buscarPeloNome(oQueFoiDigitado);
+                    break;
+                case R.id.peloCPFcliente:
+                    viewModel.buscarPeloCPF(oQueFoiDigitado);
+                    break;
+                case R.id.peloNumeroConta:
+                    viewModel.buscarPeloNumero(oQueFoiDigitado);
+                    break;
+            }
+        }
+        viewModel.contas.observe(this, novaListaContas -> {
+            if(!novaListaContas.isEmpty()){
+                rvResultado.setVisibility(View.VISIBLE);
+            }else{
+                rvResultado.setVisibility(View.INVISIBLE);
+                Toast.makeText(this, "Nenhuma conta encontrada", Toast.LENGTH_SHORT).show();
+            }
+            adapter.submitList(novaListaContas);
+        });
     }
 }

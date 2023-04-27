@@ -27,11 +27,12 @@ public class BancoViewModel extends AndroidViewModel {
     public LiveData<List<Conta>> contas = _contas;
     private MutableLiveData<String> _msg = new MutableLiveData<>();
     public LiveData<String> mensagem = _msg;
+    public LiveData<List<Conta>> contasSaldo;
 //ANGELO ACIMA
     public BancoViewModel(@NonNull Application application) {
         super(application);
         this.repository = new ContaRepository(BancoDB.getDB(application).contaDAO());
-        this.contas = repository.getContas(); // para pegar todas as contas no banco de dados
+        this.contasSaldo = repository.getContas(); // para pegar todas as contas no banco de dados
     }
 
     void transferir(String numeroContaOrigem, String numeroContaDestino, double valor) {
@@ -142,7 +143,7 @@ public class BancoViewModel extends AndroidViewModel {
             _contaAtual.postValue(c);
             if(c != null){ // verifica se a conta foi encontrada no banco de dados
                 List<Conta> lc = new ArrayList<>(); // lista criada para ser usada na pesquisa (PesquisarActivity) que mostra um tipo Lista de Contas na tela e não um tipo Conta.
-                lc.add(c); // adiciona a conta encontrada em uma lista de contas que terá somente a conta encontrada
+                lc.add(c); // adiciona a conta encontrada em uma lista de contas que conterá somente a conta encontrada
                 _contas.postValue(lc); // atualiza a lista de contas
             }else{
                 _contas.postValue(new ArrayList<>()); // caso não seja encontrada uma conta pelo número, atualiza a lista como vazia
@@ -153,10 +154,9 @@ public class BancoViewModel extends AndroidViewModel {
 
     public double saldoTotalBanco(){
         double saldoTotal = 0;
-        List<Conta> todasContas = contas.getValue();
 
-        if(todasContas != null){ // verifica se há alguma conta na lista de contas
-            for(Conta conta:todasContas){ // se houver, soma todos os saldos das contas na lista de contas
+        if(contasSaldo.getValue() != null){ // verifica se há alguma conta na lista de contas
+            for(Conta conta:contasSaldo.getValue()){ // se houver, soma todos os saldos das contas na lista de contas
                 saldoTotal = saldoTotal + conta.saldo;
             }
         }

@@ -62,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
         );
 
         // ANGELO ABAIXO
-        viewModel.contas.observe(this, todasContas -> {
+        viewModel.contasSaldo.observe(this, todasContas -> {
             totalBanco.setText(NumberFormat.getCurrencyInstance().format(viewModel.saldoTotalBanco()));
         });
         // ANGELO ACIMA

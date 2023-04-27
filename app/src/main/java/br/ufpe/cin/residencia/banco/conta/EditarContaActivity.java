@@ -63,11 +63,19 @@ public class EditarContaActivity extends AppCompatActivity {
                     if(nomeCliente.length() >= 5) {
                         if (validarCPF(cpfCliente)) {
                             if(!saldoConta.isEmpty() && saldoConta.matches(regexSaldo)) {
-                                Conta c = new Conta(numeroConta, Double.valueOf(saldoConta),
-                                        nomeCliente, cpfCliente );
-                                viewModel.atualizar(c);
-                                finish();
-                                msg = "Conta atualizada com sucesso";
+                                Conta c = new Conta(numeroConta, Double.valueOf(saldoConta), nomeCliente, cpfCliente );
+                                AlertDialog.Builder confirmaAtualizacao = new AlertDialog.Builder(EditarContaActivity.this); // cria um alerta na tela ao clicar no botão para atualizar a conta
+                                confirmaAtualizacao.setTitle("ATUALIZAR CONTA"); // título do alerta
+                                confirmaAtualizacao.setMessage("Tem certeza que deseja atualizar a conta " + c.numero + " ?"); // mensagem do alerta exibido
+                                confirmaAtualizacao.setCancelable(false);
+                                confirmaAtualizacao.setNegativeButton("CANCELAR", null); // ao clicar no botão negativo do alerta, é cancelada a atualização e retorna para a tela de edição de conta
+                                // ao clicar no botão positivo do alerta, a conta é atualizada
+                                confirmaAtualizacao.setPositiveButton("SIM, ATUALIZAR CONTA", (dialogInterface, i1) -> {
+                                    viewModel.atualizar(c);
+                                    finish();
+                                    Toast.makeText(EditarContaActivity.this, "A Conta " + c.numero + " foi atualizada com sucesso", Toast.LENGTH_LONG).show();
+                                });
+                                confirmaAtualizacao.create().show(); // mostra o alerta na tela
                             }else{
                                 msg="Digite um saldo com números";
                             }
@@ -77,7 +85,7 @@ public class EditarContaActivity extends AppCompatActivity {
                     }else {
                         msg = "Digite um nome com no mínimo 5 caracteres";
                     }
-                    if (!msg.equals("")) {
+                    if(!msg.equals("")){
                         Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
                     }
                     // ANGELO ACIMA
@@ -93,18 +101,13 @@ public class EditarContaActivity extends AppCompatActivity {
             confirmaExclusao.setTitle("EXCLUIR CONTA"); // título do alerta
             confirmaExclusao.setMessage("Tem certeza que deseja excluir a conta " + c.numero + " ?"); // mensagem do alerta exibido
             confirmaExclusao.setCancelable(false);
-            confirmaExclusao.setNegativeButton("CANCELAR", null); // ao clicar no botão negativo do
-            // alerta, é cancelada a exclusão e retorna para a tela de edição de conta
-            confirmaExclusao.setPositiveButton("SIM, EXCLUIR CONTA",
-                    new DialogInterface.OnClickListener() { //
-                // ao clicar no botão positivo do alerta, a conta é excluída
-                @Override
-                public void onClick(DialogInterface dialogInterface, int i) {
+            confirmaExclusao.setNegativeButton("CANCELAR", null); // ao clicar no botão negativo do alerta, é cancelada a exclusão e retorna para a tela de edição de conta
+            // ao clicar no botão positivo do alerta, a conta é excluída
+            confirmaExclusao.setPositiveButton("SIM, EXCLUIR CONTA", (dialogInterface, i1) -> {
                     viewModel.remover(c); // exclui a conta do banco de dados
                     finish();
                     Toast.makeText(EditarContaActivity.this, "A Conta " + c.numero + " foi excluída com sucesso", Toast.LENGTH_LONG).show();
-                }
-            });
+                });
             confirmaExclusao.create().show(); // mostra o alerta na tela
             // ANGELO ACIMA
         });
