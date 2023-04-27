@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -60,16 +61,9 @@ public class MainActivity extends AppCompatActivity {
                 v -> startActivity(new Intent(this, PesquisarActivity.class))
         );
 
-        // ANGELO ABAIXO VERIFICAR
+        // ANGELO ABAIXO
         viewModel.contas.observe(this, todasContas -> {
-            List<Conta> listaContas = viewModel.contas.getValue();
-            double saldoTotal=0;
-            if(todasContas != null){
-                for(Conta conta:todasContas){
-                    saldoTotal = saldoTotal + conta.saldo;
-                }
-            }
-            totalBanco.setText(String.valueOf(saldoTotal));
+            totalBanco.setText(NumberFormat.getCurrencyInstance().format(viewModel.saldoTotalBanco()));
         });
         // ANGELO ACIMA
     }

@@ -3,12 +3,14 @@ package br.ufpe.cin.residencia.banco;
 import static br.ufpe.cin.residencia.banco.conta.EditarContaActivity.KEY_NUMERO_CONTA;
 
 import android.app.Application;
+import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -29,6 +31,7 @@ public class BancoViewModel extends AndroidViewModel {
     public BancoViewModel(@NonNull Application application) {
         super(application);
         this.repository = new ContaRepository(BancoDB.getDB(application).contaDAO());
+        this.contas = repository.getContas(); // para pegar todas as contas no banco de dados
     }
 
     void transferir(String numeroContaOrigem, String numeroContaDestino, double valor) {
@@ -137,7 +140,26 @@ public class BancoViewModel extends AndroidViewModel {
         new Thread(() -> {
             Conta c = this.repository.buscarPeloNumero(numeroConta);
             _contaAtual.postValue(c);
+            if(c != null){ // verifica se a conta foi encontrada no banco de dados
+                List<Conta> lc = new ArrayList<>(); // lista criada para ser usada na pesquisa (PesquisarActivity) que mostra um tipo Lista de Contas na tela e não um tipo Conta.
+                lc.add(c); // adiciona a conta encontrada em uma lista de contas que terá somente a conta encontrada
+                _contas.postValue(lc); // atualiza a lista de contas
+            }else{
+                _contas.postValue(new ArrayList<>()); // caso não seja encontrada uma conta pelo número, atualiza a lista como vazia
+            }
         }).start();
         // ANGELO ACIMA
+    }
+
+    public double saldoTotalBanco(){
+        double saldoTotal = 0;
+        List<Conta> todasContas = contas.getValue();
+
+        if(todasContas != null){ // verifica se há alguma conta na lista de contas
+            for(Conta conta:todasContas){ // se houver, soma todos os saldos das contas na lista de contas
+                saldoTotal = saldoTotal + conta.saldo;
+            }
+        }
+        return saldoTotal; // retorna o valor total. Retorna 0 caso não haja conta na lista de contas
     }
 }

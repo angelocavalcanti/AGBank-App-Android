@@ -67,6 +67,7 @@ public class EditarContaActivity extends AppCompatActivity {
                                         nomeCliente, cpfCliente );
                                 viewModel.atualizar(c);
                                 finish();
+                                msg = "Conta atualizada com sucesso";
                             }else{
                                 msg="Digite um saldo com números";
                             }
@@ -101,6 +102,7 @@ public class EditarContaActivity extends AppCompatActivity {
                 public void onClick(DialogInterface dialogInterface, int i) {
                     viewModel.remover(c); // exclui a conta do banco de dados
                     finish();
+                    Toast.makeText(EditarContaActivity.this, "A Conta " + c.numero + " foi excluída com sucesso", Toast.LENGTH_LONG).show();
                 }
             });
             confirmaExclusao.create().show(); // mostra o alerta na tela

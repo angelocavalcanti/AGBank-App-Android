@@ -51,7 +51,7 @@ public class ContaViewHolder  extends RecyclerView.ViewHolder {
                     Intent i = new Intent(c, EditarContaActivity.class);
                     //TODO Está especificando a Activity mas não está passando o número da conta pelo Intent
                     // ANGELO ABAIXO
-                    // Passa o número da conta pelo intent:
+                    // Passa o número de referência da conta pelo intent (para que a conta possa ser manipulada na tela de edição):
                     i.putExtra(KEY_NUMERO_CONTA, numeroConta);
                     // ANGELO ACIMA
                     c.startActivity(i);

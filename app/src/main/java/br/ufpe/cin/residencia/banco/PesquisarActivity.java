@@ -7,12 +7,16 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioGroup;
+import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.List;
 
+import br.ufpe.cin.residencia.banco.conta.Conta;
 import br.ufpe.cin.residencia.banco.conta.ContaAdapter;
 
 //Ver anotações TODO no código
@@ -37,11 +41,36 @@ public class PesquisarActivity extends AppCompatActivity {
                 v -> {
                     String oQueFoiDigitado = aPesquisar.getText().toString();
                     //TODO implementar a busca de acordo com o tipo de busca escolhido pelo usuário
+                    // ANGELO ABAIXO
+                    if(oQueFoiDigitado.equals("")){
+                        Toast.makeText(this, "Digite algum termo para pesquisar", Toast.LENGTH_SHORT).show();
+                    }else{
+                        switch(tipoPesquisa.getCheckedRadioButtonId()) {
+                            case R.id.peloNomeCliente:
+                                viewModel.buscarPeloNome(oQueFoiDigitado);
+                                break;
+                            case R.id.peloCPFcliente:
+                                viewModel.buscarPeloCPF(oQueFoiDigitado);
+                                break;
+                            case R.id.peloNumeroConta:
+                                viewModel.buscarPeloNumero(oQueFoiDigitado);
+                                break;
+                        }
+                    }
+                    // ANGELO ACIMA
                 }
         );
-
         //TODO atualizar o RecyclerView com resultados da busca na medida que encontrar
-
-
+        // ANGELO ABAIXO
+        viewModel.contas.observe(this, novaListaContas -> {
+            if(!novaListaContas.isEmpty()){
+                adapter.submitList(novaListaContas);
+                rvResultado.setVisibility(View.VISIBLE);
+            }else{
+                rvResultado.setVisibility(View.INVISIBLE);
+                Toast.makeText(this, "Nenhuma conta encontrada", Toast.LENGTH_SHORT).show();
+            }
+        });
+        // ANGELO ACIMA 123
     }
 }

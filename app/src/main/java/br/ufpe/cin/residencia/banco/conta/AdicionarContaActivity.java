@@ -41,7 +41,7 @@ public class AdicionarContaActivity extends AppCompatActivity {
                     //TODO: Incluir validações aqui, antes de criar um objeto Conta (por exemplo, verificar que digitou um nome com pelo menos 5 caracteres, que o campo de saldo tem de fato um número, assim por diante). Se todas as validações passarem, aí sim cria a Conta conforme linha abaixo.
 
                     // ANGELO ABAIXO
-                    String msg="";
+                    String msg = "";
                     if(!numeroConta.isEmpty()) {
                         if(nomeCliente.length() >= 5) {
                             if (validarCPF(cpfCliente)) {
@@ -50,8 +50,9 @@ public class AdicionarContaActivity extends AppCompatActivity {
                                             nomeCliente, cpfCliente );
                                     viewModel.inserir(c);
                                     finish();
+                                    msg = "Conta adicionada com sucesso";
                                 }else{
-                                    msg="Digite um saldo com números";
+                                    msg = "Digite um saldo com números";
                                 }
                             }else {
                                 msg = "Digite um CPF válido";
