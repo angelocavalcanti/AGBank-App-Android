@@ -1,10 +1,19 @@
 package br.ufpe.cin.residencia.banco.cliente;
 
+import static br.ufpe.cin.residencia.banco.conta.AdicionarContaActivity.validarCPF;
+
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProvider;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
 
 import br.ufpe.cin.residencia.banco.R;
+import br.ufpe.cin.residencia.banco.cliente.Cliente;
+import br.ufpe.cin.residencia.banco.cliente.ClienteViewModel;
 
 public class AdicionarClienteActivity extends AppCompatActivity {
 
@@ -14,5 +23,35 @@ public class AdicionarClienteActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_adicionar_cliente);
+        viewModel = new ViewModelProvider(this).get(ClienteViewModel.class);
+
+        Button btnAtualizar = findViewById(R.id.btnAtualizar);
+        Button btnRemover = findViewById(R.id.btnRemover);
+        EditText campoNome = findViewById(R.id.nome);
+        EditText campoCPF = findViewById(R.id.cpf);
+
+        btnAtualizar.setText("Inserir");
+        btnRemover.setVisibility(View.GONE);
+
+        btnAtualizar.setOnClickListener(
+                v -> {
+                    String nomeCliente = campoNome.getText().toString();
+                    String cpfCliente = campoCPF.getText().toString();
+                    String msg = "";
+                    if(!cpfCliente.isEmpty() && validarCPF(cpfCliente)) {
+                        if(nomeCliente.length() >= 5) {
+                            Cliente c = new Cliente(cpfCliente, nomeCliente);
+                            viewModel.inserir(c);
+                            finish();
+                            msg = "Cliente adicionado com sucesso";
+                        }else {
+                            msg = "Digite um nome com no mínimo 5 caracteres";
+                        }
+                    }else {
+                        msg = "Digite um CPF válido";
+                    }
+                    Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
+                }
+        );
     }
 }

@@ -12,4 +12,10 @@ public class Cliente {
     @NonNull
     public String nome;
 
+    // ANGELO ABAIXO
+    public Cliente(@NonNull String cpf, @NonNull String nome) {
+        this.cpf = cpf;
+        this.nome = nome;
+    }
+    //ANGELO ACIMA
 }

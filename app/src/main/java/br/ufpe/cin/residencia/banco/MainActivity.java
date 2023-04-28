@@ -40,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
         TextView totalBanco = findViewById(R.id.totalDinheiroBanco);
 
         //Remover a linha abaixo se for implementar a parte de Clientes
-        clientes.setEnabled(false);
+//        clientes.setEnabled(false);
 
         contas.setOnClickListener(
                 v -> startActivity(new Intent(this, ContasActivity.class))

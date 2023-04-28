@@ -37,6 +37,9 @@
             android:name=".cliente.ClientesActivity"
             android:exported="false" />
         <activity
+            android:name=".cliente.EditarClienteActivity"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
