@@ -4,10 +4,12 @@ import androidx.annotation.WorkerThread;
 import androidx.lifecycle.LiveData;
 
 import java.util.List;
+import java.util.Map;
 
 import br.ufpe.cin.residencia.banco.cliente.Cliente;
 import br.ufpe.cin.residencia.banco.cliente.Cliente;
 import br.ufpe.cin.residencia.banco.cliente.ClienteDAO;
+import br.ufpe.cin.residencia.banco.conta.Conta;
 
 public class ClienteRepository {
     private ClienteDAO dao;
@@ -45,5 +47,10 @@ public class ClienteRepository {
     @WorkerThread
     public Cliente buscarPeloCPF(String cpf) {
         return dao.buscarPeloCPF(cpf);
+    }
+
+    @WorkerThread
+    public Map<Cliente, List<Conta>> carregarClienteEContas() {
+        return dao.carregarClienteEContas();
     }
 }
