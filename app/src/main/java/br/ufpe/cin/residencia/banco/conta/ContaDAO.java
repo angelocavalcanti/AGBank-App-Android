@@ -34,7 +34,7 @@ public interface ContaDAO {
     // ANGELO ABAIXO
     @Query("SELECT * FROM contas WHERE numero = :numeroProcurado")
     Conta buscarPeloNumero(String numeroProcurado);
-    @Query("SELECT * FROM contas WHERE nomeCliente = :nomeProcurado")
+    @Query("SELECT * FROM contas WHERE nomeCliente LIKE :nomeProcurado")
     List<Conta> buscarPeloNome(String nomeProcurado);
     @Query("SELECT * FROM contas WHERE cpfCliente = :cpfProcurado")
     List<Conta> buscarPeloCPF(String cpfProcurado);

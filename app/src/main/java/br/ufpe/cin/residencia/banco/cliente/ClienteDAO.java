@@ -11,7 +11,6 @@ import androidx.room.Update;
 import java.util.List;
 import java.util.Map;
 
-import br.ufpe.cin.residencia.banco.cliente.Cliente;
 import br.ufpe.cin.residencia.banco.conta.Conta;
 
 @Dao
@@ -22,9 +21,11 @@ public interface ClienteDAO {
 
     @Update
     void atualizar(Cliente c);
+
     @Delete
     void remover(Cliente c);
 
+    // lista os clientes por ordem alfabética de nome
     @Query("SELECT * FROM clientes ORDER BY nome ASC")
     LiveData<List<Cliente>> clientes();
 

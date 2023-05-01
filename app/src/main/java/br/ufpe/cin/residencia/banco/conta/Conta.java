@@ -14,8 +14,8 @@ import br.ufpe.cin.residencia.banco.cliente.ClienteRepository;
 //ESTA CLASSE NAO PRECISA SER MODIFICADA!
 @Entity(tableName = "contas",
         foreignKeys = @ForeignKey(entity = Cliente.class, // relacionamento entre as tabelas Cliente e Conta
-                parentColumns = "cpf",
-                childColumns = "cpfCliente",
+                parentColumns = "cpf", // coluna "pai", de Cliente
+                childColumns = "cpfCliente", // coluna "filho", de Conta
                 onDelete = CASCADE)) // caso o cliente seja excluído, suas contas também serão.
 public class Conta {
     @PrimaryKey

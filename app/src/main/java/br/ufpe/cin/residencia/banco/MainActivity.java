@@ -62,6 +62,7 @@ public class MainActivity extends AppCompatActivity {
         );
 
         // ANGELO ABAIXO
+        // mostra na tela o valor total atualizado automaticamente de acordo com o saldo de todas as contas
         viewModel.contasSaldo.observe(this, todasContas -> {
             totalBanco.setText(NumberFormat.getCurrencyInstance().format(viewModel.saldoTotalBanco()));
         });

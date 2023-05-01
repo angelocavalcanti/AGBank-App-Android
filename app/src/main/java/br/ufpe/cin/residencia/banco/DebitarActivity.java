@@ -39,11 +39,12 @@ public class DebitarActivity extends AppCompatActivity {
                     // O método abaixo está sendo chamado, mas precisa ser implementado na classe BancoViewModel para funcionar.
                     String numOrigem = numeroContaOrigem.getText().toString();
                     double valor = 0;
-                    if(!valorOperacao.getText().toString().equals("")){
-                        valor = Double.valueOf(valorOperacao.getText().toString());
+                    if(!valorOperacao.getText().toString().equals("")){ // verifica se o valor informado não é vazio
+                        valor = Double.valueOf(valorOperacao.getText().toString()); // se não for vazio, atribui à "valor"
                     }
-                    viewModel.debitar(numOrigem, valor);
+                    viewModel.debitar(numOrigem, valor); // debita o valor na conta
                     finish();
+                    // apresenta a mensagem toast na tela de acordo com o ocorrido na validação (vem de bancoViewModel):
                     viewModel.mensagem.observe(this, msg -> Toast.makeText(this, msg, Toast.LENGTH_SHORT).show());
                 }
         );

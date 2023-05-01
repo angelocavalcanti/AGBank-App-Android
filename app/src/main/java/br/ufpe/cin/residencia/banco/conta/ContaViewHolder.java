@@ -35,9 +35,9 @@ public class ContaViewHolder  extends RecyclerView.ViewHolder {
         // ANGELO ABAIXO
         // Agora está atualizando a imagem:
         if(c.saldo > 0){
-            this.icone.setImageResource(R.drawable.ok);
+            this.icone.setImageResource(R.drawable.ok); // se saldo for maior que zero, mostra essa imagem como ícone
         }else{
-            this.icone.setImageResource(R.drawable.delete);
+            this.icone.setImageResource(R.drawable.delete); // se saldo for zero ou negativo, mostra essa imagem como ícone
         }
         // ANGELO ACIMA
 

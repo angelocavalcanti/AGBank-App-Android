@@ -12,7 +12,7 @@ import br.ufpe.cin.residencia.banco.conta.Conta;
 import br.ufpe.cin.residencia.banco.conta.ContaDAO;
 
 //ESTA CLASSE NAO PRECISA SER MODIFICADA, SE NAO FOR IMPLEMENTAR A FUNCIONALIDADE DE CLIENTES!
-@Database(entities = {Conta.class, Cliente.class}, version = 1)
+@Database(entities = {Conta.class, Cliente.class}, version = 1) // criado também a entidade Cliente
 public abstract class BancoDB extends RoomDatabase {
     public abstract ContaDAO contaDAO();
     public abstract ClienteDAO clienteDAO();

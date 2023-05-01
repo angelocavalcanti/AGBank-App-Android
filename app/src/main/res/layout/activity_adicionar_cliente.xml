@@ -33,6 +33,7 @@
         android:layout_margin="16dp"
         android:fontFamily="sans-serif-light"
         android:hint="Digite um CPF"
+        android:maxLength="11"
         android:minHeight="48dp"
         android:textSize="18sp" />
 

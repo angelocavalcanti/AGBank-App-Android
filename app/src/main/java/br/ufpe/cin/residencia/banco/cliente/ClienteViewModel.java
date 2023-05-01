@@ -30,9 +30,7 @@ public class ClienteViewModel extends AndroidViewModel {
         this.clientes = repository.getClientes();
     }
 
-    void inserir(Cliente c) {
-        new Thread(() -> repository.inserir(c)).start();
-    }
+    void inserir(Cliente c) { new Thread(() -> repository.inserir(c)).start(); }
 
     void atualizar(Cliente c) { new Thread(() -> this.repository.atualizar(c)).start(); }
 

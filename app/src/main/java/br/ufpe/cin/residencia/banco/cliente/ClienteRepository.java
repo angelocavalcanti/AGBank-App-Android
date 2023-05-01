@@ -10,9 +10,11 @@ import br.ufpe.cin.residencia.banco.cliente.Cliente;
 import br.ufpe.cin.residencia.banco.cliente.Cliente;
 import br.ufpe.cin.residencia.banco.cliente.ClienteDAO;
 import br.ufpe.cin.residencia.banco.conta.Conta;
+import br.ufpe.cin.residencia.banco.conta.ContaDAO;
 
 public class ClienteRepository {
     private ClienteDAO dao;
+    private ContaDAO daoConta;
     private LiveData<List<Cliente>> clientes;
 
     public ClienteRepository(ClienteDAO dao) {

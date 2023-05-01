@@ -33,11 +33,12 @@ public class ClientesActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);
 
+        // carrega os clientes no viewmodel:
         viewModel.clientes.observe(
                 this,
                 novaListaClientes -> {
                     List<Cliente> novaLista = new ArrayList<>(novaListaClientes);
-                    adapter.submitList(novaLista);
+                    adapter.submitList(novaLista); // atualiza a lista de clientes automaticamente na tela
                 });
 
         Button adicionarCliente = findViewById(R.id.btn_Adiciona);

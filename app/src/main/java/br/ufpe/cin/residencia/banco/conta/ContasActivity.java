@@ -30,11 +30,12 @@ public class ContasActivity extends AppCompatActivity {
         recyclerView.setAdapter(adapter);
 
         // ANGELO ABAIXO
+        // carrega as contas no viewmodel:
         viewModel.contas.observe(
                 this,
                 novaListaContas -> {
                     List<Conta> novaLista = new ArrayList<>(novaListaContas);
-                    adapter.submitList(novaLista);
+                    adapter.submitList(novaLista); // atualiza a lista de contas automaticamente na tela
                 });
         // ANGELO ACIMA
 

@@ -38,9 +38,13 @@ public class AdicionarClienteActivity extends AppCompatActivity {
                     String nomeCliente = campoNome.getText().toString();
                     String cpfCliente = campoCPF.getText().toString();
                     String msg = "";
+                    // verifica se o cpf não é vazio e é válido:
                     if(!cpfCliente.isEmpty() && validarCPF(cpfCliente)) {
+                        // verifica se o nome tem 5 ou mais caracteres:
                         if(nomeCliente.length() >= 5) {
+                            // cria um objeto cliente com os dados passados:
                             Cliente c = new Cliente(cpfCliente, nomeCliente);
+                            // insere o cliente no banco de dados:
                             viewModel.inserir(c);
                             finish();
                             msg = "Cliente adicionado com sucesso";

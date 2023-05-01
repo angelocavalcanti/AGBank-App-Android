@@ -42,18 +42,18 @@ public class PesquisarActivity extends AppCompatActivity {
                     String oQueFoiDigitado = aPesquisar.getText().toString();
                     //TODO implementar a busca de acordo com o tipo de busca escolhido pelo usuário
                     // ANGELO ABAIXO
-                    if(oQueFoiDigitado.equals("")){
+                    if(oQueFoiDigitado.equals("")){ // verifica se o valor do campo de busca é vazio
                         Toast.makeText(this, "Digite algum termo para pesquisar", Toast.LENGTH_SHORT).show();
                     }else{
                         switch(tipoPesquisa.getCheckedRadioButtonId()) {
-                            case R.id.peloNomeCliente:
-                                viewModel.buscarPeloNome(oQueFoiDigitado);
+                            case R.id.peloNomeCliente: // caso seja escolhida a opção de pesquisa por nome
+                                viewModel.buscarPeloNome(oQueFoiDigitado); // busca pelo nome
                                 break;
-                            case R.id.peloCPFcliente:
-                                viewModel.buscarPeloCPF(oQueFoiDigitado);
+                            case R.id.peloCPFcliente:// caso seja escolhida a opção de pesquisa por cpf
+                                viewModel.buscarPeloCPF(oQueFoiDigitado); // busca pelo cpf
                                 break;
-                            case R.id.peloNumeroConta:
-                                viewModel.buscarPeloNumero(oQueFoiDigitado);
+                            case R.id.peloNumeroConta:// caso seja escolhida a opção de pesquisa por número de conta
+                                viewModel.buscarPeloNumero(oQueFoiDigitado); // busca pelo número da conta
                                 break;
                         }
                     }
@@ -62,26 +62,28 @@ public class PesquisarActivity extends AppCompatActivity {
         );
         //TODO atualizar o RecyclerView com resultados da busca na medida que encontrar
         // ANGELO ABAIXO
+        // atualiza a lista de contas de acordo com o resultado obtido na busca
         viewModel.contas.observe(this, novaListaContas -> {
+            // verifica se o resultado não é vazio (encontrou conta com a busca realizada):
             if(!novaListaContas.isEmpty()){
-                rvResultado.setVisibility(View.VISIBLE);
-            }else{
-                rvResultado.setVisibility(View.INVISIBLE);
+                rvResultado.setVisibility(View.VISIBLE); // mostra o resultado na tela
+            }else{ // se o resultado for vazio:
+                rvResultado.setVisibility(View.INVISIBLE); // não mostra nada
+                // mostra uma mensagem na tela informando que não encontrou nada na busca:
                 Toast.makeText(this, "Nenhuma conta encontrada", Toast.LENGTH_SHORT).show();
             }
-            adapter.submitList(novaListaContas);
+            adapter.submitList(novaListaContas); // atualiza o recycler view com a lista de contas
         });
 
         // ANGELO ACIMA
     }
-    protected void onStart (){ // criado para caso o usuário edite alguma conta encontrada na pesquisa, ao voltar, a tela é atualizada e mostra o resultado da pesquisa com os dados mais atuais da conta, sem precisar clicar no botão "pesquisar".
+    protected void onStart (){ // criado para que caso o usuário edite alguma conta encontrada na pesquisa, ao voltar, a tela seja atualizada e mostre o resultado da pesquisa com os dados mais atuais da conta, sem precisar clicar no botão "pesquisar".
         super.onStart();
         RecyclerView rvResultado = findViewById(R.id.rvResultado);
         EditText aPesquisar = findViewById(R.id.pesquisa);
         RadioGroup tipoPesquisa = findViewById(R.id.tipoPesquisa);
         String oQueFoiDigitado = aPesquisar.getText().toString();
-        //TODO implementar a busca de acordo com o tipo de busca escolhido pelo usuário
-        // ANGELO ABAIXO
+
         if(oQueFoiDigitado.equals("")){
             Toast.makeText(this, "Digite algum termo para pesquisar", Toast.LENGTH_SHORT).show();
         }else{

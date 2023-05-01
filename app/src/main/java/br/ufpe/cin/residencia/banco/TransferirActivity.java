@@ -39,11 +39,13 @@ public class TransferirActivity extends AppCompatActivity {
                     //TODO lembrar de implementar validação dos números das contas e do valor da operação, antes de efetuar a operação de transferência.
                     // O método abaixo está sendo chamado, mas precisa ser implementado na classe BancoViewModel para funcionar.
                     double valor = 0;
-                    if(!valorOperacao.getText().toString().equals("")){
-                        valor = Double.valueOf(valorOperacao.getText().toString());
+                    if(!valorOperacao.getText().toString().equals("")){ // verifica se o valor informado não é vazio
+                        valor = Double.valueOf(valorOperacao.getText().toString()); // se não for vazio, atribui à "valor"
                     }
+                    // transfere o valor da conta origem para a conta destino:
                     viewModel.transferir(numOrigem, numDestino, valor);
                     finish();
+                    // apresenta a mensagem toast na tela de acordo com o ocorrido na validação (vem de bancoViewModel):
                     viewModel.mensagem.observe(this, msg -> Toast.makeText(this, msg, Toast.LENGTH_SHORT).show());
                 }
         );
