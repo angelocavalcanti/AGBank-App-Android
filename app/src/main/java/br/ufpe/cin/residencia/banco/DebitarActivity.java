@@ -29,9 +29,9 @@ public class DebitarActivity extends AppCompatActivity {
         labelContaDestino.setVisibility(View.GONE);
         numeroContaDestino.setVisibility(View.GONE);
 
-        valorOperacao.setHint(valorOperacao.getHint() + " debitado");
-        tipoOperacao.setText("DEBITAR");
-        btnOperacao.setText("Debitar");
+        valorOperacao.setHint(valorOperacao.getHint() + getString(R.string.txt_placeholder_debitado));
+        tipoOperacao.setText(R.string.label_debitar);
+        btnOperacao.setText(R.string.btn_debitar);
 
         btnOperacao.setOnClickListener(
                 v -> {

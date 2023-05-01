@@ -8,7 +8,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Nome"
+        android:text="@string/label_nome"
         android:textSize="24sp" />
 
     <EditText
@@ -17,14 +17,14 @@
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
         android:fontFamily="sans-serif-light"
-        android:hint="Digite um nome"
+        android:hint="@string/campo_nome"
         android:minHeight="48dp"
         android:textSize="18sp" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="CPF"
+        android:text="@string/label_cpf"
         android:textSize="24sp" />
     <EditText
         android:id="@+id/cpf"
@@ -32,7 +32,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
         android:fontFamily="sans-serif-light"
-        android:hint="Digite um CPF"
+        android:hint="@string/campo_cpf"
         android:maxLength="11"
         android:minHeight="48dp"
         android:textSize="18sp" />
@@ -44,7 +44,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
-        android:text="Atualizar"
+        android:text="@string/btn_atualizar"
         android:textColor="#FFFFFF" />
 
     <Button
@@ -53,7 +53,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
         android:backgroundTint="@color/design_default_color_error"
-        android:text="Remover"
+        android:text="@string/btn_remover"
         android:textColor="#FFFFFF" />
 
 </LinearLayout>

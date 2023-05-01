@@ -30,7 +30,7 @@ public class AdicionarClienteActivity extends AppCompatActivity {
         EditText campoNome = findViewById(R.id.nome);
         EditText campoCPF = findViewById(R.id.cpf);
 
-        btnAtualizar.setText("Inserir");
+        btnAtualizar.setText(R.string.btn_inserir);
         btnRemover.setVisibility(View.GONE);
 
         btnAtualizar.setOnClickListener(
@@ -47,12 +47,12 @@ public class AdicionarClienteActivity extends AppCompatActivity {
                             // insere o cliente no banco de dados:
                             viewModel.inserir(c);
                             finish();
-                            msg = "Cliente adicionado com sucesso";
+                            msg = getString(R.string.msg_cliente_adicionado);
                         }else {
-                            msg = "Digite um nome com no mínimo 5 caracteres";
+                            msg = getString(R.string.msg_minimo_caracteres, 5);
                         }
                     }else {
-                        msg = "Digite um CPF válido";
+                        msg = getString(R.string.msg_cpf_valido);
                     }
                     Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
                 }

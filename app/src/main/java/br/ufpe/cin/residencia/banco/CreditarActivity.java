@@ -27,9 +27,9 @@ public class CreditarActivity extends AppCompatActivity {
         Button btnOperacao = findViewById(R.id.btnOperacao);
         labelContaDestino.setVisibility(View.GONE);
         numeroContaDestino.setVisibility(View.GONE);
-        valorOperacao.setHint(valorOperacao.getHint() + " creditado");
-        tipoOperacao.setText("CREDITAR");
-        btnOperacao.setText("Creditar");
+        valorOperacao.setHint(valorOperacao.getHint() + getString(R.string.txt_placeholder_creditado));
+        tipoOperacao.setText(R.string.label_creditar);
+        btnOperacao.setText(R.string.btn_creditar);
 
         btnOperacao.setOnClickListener(
                 v -> {

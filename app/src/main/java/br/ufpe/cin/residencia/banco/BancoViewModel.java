@@ -52,21 +52,21 @@ public class BancoViewModel extends AndroidViewModel {
                                 origem.transferir(destino, valor); // realiza a transferência
                                 repository.atualizar(origem); // atualiza a conta de origem (com novo saldo) no banco de dados
                                 repository.atualizar(destino); // atualiza a conta de destino (com novo saldo) no banco de dados
-                                msg = "Transferência realizada com sucesso!";
+                                msg = getApplication().getString(R.string.msg_sucesso_transferencia);
                             } else {
-                                msg = "Saldo insuficiente";
+                                msg = getApplication().getString(R.string.msg_saldo_insuficiente);
                             }
                         } else {
-                            msg = "Digite um valor maior que zero";
+                            msg = getApplication().getString(R.string.msg_digite_valor_maior_zero);
                         }
                     }else{
-                        msg = "Digite números de contas diferentes para efetuar uma transferência";
+                        msg = getApplication().getString(R.string.msg_digite_numeros_contas_diferentes);
                     }
                 }else{
-                    msg = "Conta de destino não encontrada";
+                    msg = getApplication().getString(R.string.msg_conta_destino_nao_encontrada);
                 }
             }else {
-                msg = "Conta de origem não encontrada";
+                msg = getApplication().getString(R.string.msg_conta_origem_nao_encontrada);
             }
             _msg.postValue(msg); // envia a mensagem para ser exibida como toast na tela
         }).start();
@@ -83,12 +83,12 @@ public class BancoViewModel extends AndroidViewModel {
                 if (valor > 0) { // se a conta existir, verifica se o valor informado para crédito é maior que zero
                     conta.creditar(valor); // credita o valor informado na conta informada
                     repository.atualizar(conta); // atualiza a conta (com novo saldo) no banco de dados
-                    msg = "Crédito realizado com sucesso!";
+                    msg = getApplication().getString(R.string.msg_sucesso_credito);
                 } else {
-                    msg = "Digite um valor maior que zero";
+                    msg = getApplication().getString(R.string.msg_digite_valor_maior_zero);
                 }
             } else {
-                msg = "Conta não encontrada";
+                msg = getApplication().getString(R.string.msg_conta_nao_encontrada);
             }
             _msg.postValue(msg); // envia a mensagem para ser exibida como toast na tela
         }).start();
@@ -106,15 +106,15 @@ public class BancoViewModel extends AndroidViewModel {
                     if(conta.saldo >= valor){  // verifica se há saldo suficiente na conta para realizar o débito
                         conta.debitar(valor); // debita o valor informado na conta informada
                         repository.atualizar(conta); // atualiza a conta (com novo saldo) no banco de dados
-                        msg = "Débito realizado com sucesso!";
+                        msg = getApplication().getString(R.string.msg_sucesso_debito);
                     }else{
-                        msg = "Saldo insuficiente";
+                        msg = getApplication().getString(R.string.msg_saldo_insuficiente);
                     }
                 }else{
-                    msg = "Digite um valor maior que zero";
+                    msg = getApplication().getString(R.string.msg_digite_valor_maior_zero);
                 }
             }else{
-                msg = "Conta não encontrada";
+                msg = getApplication().getString(R.string.msg_conta_nao_encontrada);
             }
             _msg.postValue(msg); // envia a mensagem para ser exibida como toast na tela
         }).start();

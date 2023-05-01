@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="5dp"
-        android:hint="Digite algum termo para pesquisar" />
+        android:hint="@string/msg_digite_termo_pesquisar" />
 
     <RadioGroup
         android:layout_width="match_parent"
@@ -23,19 +23,19 @@
                 android:checked="true"
                 android:layout_margin="3dp"
                 android:id="@+id/peloNomeCliente"
-                android:text="Nome" />
+                android:text="@string/radio_nome" />
             <RadioButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="3dp"
                 android:id="@+id/peloCPFcliente"
-                android:text="CPF" />
+                android:text="@string/radio_cpf" />
             <RadioButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="3dp"
                 android:id="@+id/peloNumeroConta"
-                android:text="Número da Conta" />
+                android:text="@string/radio_numero_da_conta" />
     </RadioGroup>
 
 
@@ -44,7 +44,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="5dp"
-        android:text="Pesquisar" />
+        android:text="@string/btn_pesquisar" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvResultado"

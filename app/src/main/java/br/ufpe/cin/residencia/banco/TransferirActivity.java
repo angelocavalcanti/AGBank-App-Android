@@ -28,9 +28,9 @@ public class TransferirActivity extends AppCompatActivity {
         EditText valorOperacao = findViewById(R.id.valor);
         Button btnOperacao = findViewById(R.id.btnOperacao);
 
-        valorOperacao.setHint(valorOperacao.getHint() + " transferido");
-        tipoOperacao.setText("TRANSFERIR");
-        btnOperacao.setText("Transferir");
+        valorOperacao.setHint(valorOperacao.getHint() + getString(R.string.txt_placeholder_transferido));
+        tipoOperacao.setText(R.string.label_transferir);
+        btnOperacao.setText(R.string.btn_transferir);
 
         btnOperacao.setOnClickListener(
                 v -> {

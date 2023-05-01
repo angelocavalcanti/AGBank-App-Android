@@ -30,7 +30,7 @@ public class ClienteViewHolder extends RecyclerView.ViewHolder {
     void bindTo(Cliente c) {
         this.nomeCliente.setText(c.nome);
         // apresenta o cpf no formato xxx.xxx.xxx-xx
-        this.infoCliente.setText("CPF: " + c.cpf.substring(0,3)+"."+c.cpf.substring(3,6)+"."+c.cpf.substring(6,9)+"-"+c.cpf.substring(9,11));
+        this.infoCliente.setText(this.itemView.getContext().getString(R.string.txt_viewHolder_cpf_cliente, (c.cpf.substring(0,3)+"."+c.cpf.substring(3,6)+"."+c.cpf.substring(6,9)+"-"+c.cpf.substring(9,11))));
         this.addListener(c.cpf);
     }
 

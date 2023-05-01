@@ -47,7 +47,7 @@ public class EditarClienteActivity extends AppCompatActivity {
                 campoNome.setText(cliente.nome);
         });
 
-        btnAtualizar.setText("Atualizar");
+        btnAtualizar.setText(R.string.text_btn_atualizar);
         btnAtualizar.setOnClickListener(v -> {
                 String nomeCliente = campoNome.getText().toString();
 
@@ -58,15 +58,15 @@ public class EditarClienteActivity extends AppCompatActivity {
                     // cria um alerta na tela ao clicar no botão para atualizar o cliente:
                     AlertDialog.Builder confirmaAtualizacao = new AlertDialog.Builder(EditarClienteActivity.this);
                     // título do alerta:
-                    confirmaAtualizacao.setTitle("ATUALIZAR CLIENTE");
+                    confirmaAtualizacao.setTitle(R.string.dialog_titulo_atualizar_cliente);
                     // mensagem do alerta exibido:
-                    confirmaAtualizacao.setMessage("Tem certeza que deseja atualizar o cliente " + c.cpf + " ?");
+                    confirmaAtualizacao.setMessage(getString(R.string.dialog_msg_atualizar_cliente_de_cpf, c.cpf));
                     // não fecha o alerta ao clicar fora dele (é preciso escolher uma opção do alerta):
                     confirmaAtualizacao.setCancelable(false);
                     // ao clicar no botão negativo do alerta, é cancelada a atualização e retorna para a tela de edição de cliente:
-                    confirmaAtualizacao.setNegativeButton("CANCELAR", null);
+                    confirmaAtualizacao.setNegativeButton(R.string.dialog_btn_negativo_cancelar, null);
                     // ao clicar no botão positivo do alerta, o cliente é atualizado:
-                    confirmaAtualizacao.setPositiveButton("SIM, ATUALIZAR CLIENTE", (dialogInterface, i1) -> {
+                    confirmaAtualizacao.setPositiveButton(R.string.dialog_btn_positivo_atualizar_cliente, (dialogInterface, i1) -> {
                         viewModel.atualizar(c);
 
                         // ANGELO VERIFICAR ABAIXO
@@ -88,12 +88,12 @@ public class EditarClienteActivity extends AppCompatActivity {
                         // ANGELO VERIFICAR ACIMA
 
                         finish();
-                        Toast.makeText(EditarClienteActivity.this, "O Cliente " + c.cpf + " foi atualizado com sucesso", Toast.LENGTH_LONG).show();
+                        Toast.makeText(EditarClienteActivity.this, getString(R.string.msg_cliente_de_cpf_x_atualizado_sucesso, c.cpf), Toast.LENGTH_LONG).show();
                     });
                     // mostra o alerta na tela:
                     confirmaAtualizacao.create().show();
                 }else {
-                    msg = "Digite um nome com no mínimo 5 caracteres";
+                    msg = getString(R.string.msg_minimo_caracteres, 5);
                 }
                 if(!msg.equals("")){
                     Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
@@ -105,19 +105,19 @@ public class EditarClienteActivity extends AppCompatActivity {
             // cria um alerta na tela ao clicar no botão para excluir o cliente:
             AlertDialog.Builder confirmaExclusao = new AlertDialog.Builder(EditarClienteActivity.this);
             // título do alerta:
-            confirmaExclusao.setTitle("EXCLUIR CLIENTE");
+            confirmaExclusao.setTitle(R.string.dialog_titulo_excluir_cliente);
             // mensagem do alerta exibido:
-            confirmaExclusao.setMessage("Tem certeza que deseja excluir o(a) cliente " + c.cpf + " ?\n\nObs.: Todas as contas associadas a este(a) cliente também serão excluídas");
+            confirmaExclusao.setMessage(getString(R.string.dialog_msg_excluir_cliente_de_cpf_x, c.cpf) + getString(R.string.dialog_obs_contas_serao_excluidas));
             // não fecha o alerta ao clicar fora dele (é preciso escolher uma opção do alerta):
             confirmaExclusao.setCancelable(false);
             // ao clicar no botão negativo do alerta, é cancelada a exclusão e retorna para a tela de edição de cliente:
-            confirmaExclusao.setNegativeButton("CANCELAR", null);
+            confirmaExclusao.setNegativeButton(R.string.dialog_btn_negativo_cancelar, null);
             // ao clicar no botão positivo do alerta, o cliente é excluída:
-            confirmaExclusao.setPositiveButton("SIM, EXCLUIR CLIENTE", (dialogInterface, i1) -> {
+            confirmaExclusao.setPositiveButton(R.string.dialog_msg_positiva_sim_excluir_cliente, (dialogInterface, i1) -> {
                 // exclui o cliente do banco de dados
                 viewModel.remover(c);
                 finish();
-                Toast.makeText(EditarClienteActivity.this, "Cliente " + c.cpf + " excluído com sucesso", Toast.LENGTH_SHORT).show();
+                Toast.makeText(EditarClienteActivity.this, getString(R.string.msg_cliente_de_cpf_x_excluido_sucesso, c.cpf), Toast.LENGTH_SHORT).show();
                 });
             // mostra o alerta na tela:
             confirmaExclusao.create().show();

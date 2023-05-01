@@ -41,7 +41,7 @@ public class AdicionarContaActivity extends AppCompatActivity {
         EditText campoSaldo = findViewById(R.id.saldo);
 //        TextView labelNome = findViewById(R.id.labelNome);
 
-        btnAtualizar.setText("Inserir");
+        btnAtualizar.setText(R.string.btn_inserir);
         btnRemover.setVisibility(View.GONE);
 //        labelNome.setVisibility(View.GONE); // ANGELO
 //        campoNome.setVisibility(View.GONE); // ANGELO
@@ -77,26 +77,26 @@ public class AdicionarContaActivity extends AppCompatActivity {
                                             // insere a conta no banco de dados:
                                             viewModel.inserir(c);
                                             finish();
-                                            Toast.makeText(this, "Conta adicionada com sucesso", Toast.LENGTH_SHORT).show();
+                                            Toast.makeText(this, R.string.msg_conta_add_sucesso, Toast.LENGTH_SHORT).show();
                                         } else {
-                                            Toast.makeText(this, "Digite um saldo com números", Toast.LENGTH_SHORT).show();
+                                            Toast.makeText(this, R.string.msg_digite_saldo_com_numeros, Toast.LENGTH_SHORT).show();
                                         }
                                     } else {
-                                        Toast.makeText(this, "É necessário cadastrar um cliente com o CPF informado", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(this, R.string.msg_necessario_cadastrar_cliente_com_cpf, Toast.LENGTH_SHORT).show();
                                     }
                                 });
                             } else {
-                                Toast.makeText(this, "Digite um CPF válido", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(this, R.string.msg_cpf_valido, Toast.LENGTH_SHORT).show();
                             }
 //                        }else {
 //                            msg = "Digite um nome com no mínimo 5 caracteres";
 //                        }
                         } else {
-                            Toast.makeText(AdicionarContaActivity.this, "Conta já existe. Digite um novo número", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(AdicionarContaActivity.this, R.string.msg_conta_ja_existe_digite_novo_numero, Toast.LENGTH_SHORT).show();
                         }
                     });
                 }else {
-                    msg = "Digite um número para a conta";
+                    msg = getString(R.string.msg_digite_numero_conta);
                 }
                 // se msg for diferente de vazio, entrou em algum else e recebeu uma mensagem para exibir como toast:
                 if (!msg.equals("")) {

@@ -59,7 +59,7 @@ public class EditarContaActivity extends AppCompatActivity {
                 // campoNome.setText(conta.nomeCliente); // não será mais preciso pois para editar o nome deve ser usada a tela de edição de cliente.
         });
         // ANGELO ACIMA
-        btnAtualizar.setText("Atualizar");
+        btnAtualizar.setText(R.string.text_btn_atualizar);
         btnAtualizar.setOnClickListener(
                 v -> {
 //                    String nomeCliente = campoNome.getText().toString();
@@ -84,31 +84,31 @@ public class EditarContaActivity extends AppCompatActivity {
                                         // cria um alerta na tela ao clicar no botão para atualizar a conta
                                         AlertDialog.Builder confirmaAtualizacao = new AlertDialog.Builder(EditarContaActivity.this);
                                         // título do alerta
-                                        confirmaAtualizacao.setTitle("ATUALIZAR CONTA");
+                                        confirmaAtualizacao.setTitle(R.string.dialog_titulo_atualizar_conta);
                                         // mensagem do alerta exibido:
-                                        confirmaAtualizacao.setMessage("Tem certeza que deseja atualizar a conta " + c.numero + " ?");
+                                        confirmaAtualizacao.setMessage(getString(R.string.dialog_msg_certeza_atualizar_conta, c.numero));
                                         // não fecha o alerta ao clicar fora dele (é preciso escolher uma opção do alerta):
                                         confirmaAtualizacao.setCancelable(false);
                                         // ao clicar no botão negativo do alerta, é cancelada a atualização e retorna para a tela de edição de conta:
-                                        confirmaAtualizacao.setNegativeButton("CANCELAR", null);
+                                        confirmaAtualizacao.setNegativeButton(R.string.dialog_btn_negativo_cancelar, null);
                                         // ao clicar no botão positivo do alerta, a conta é atualizada:
-                                        confirmaAtualizacao.setPositiveButton("SIM, ATUALIZAR CONTA", (dialogInterface, i1) -> {
+                                        confirmaAtualizacao.setPositiveButton(R.string.dialog_btn_positivo_atualizar_conta, (dialogInterface, i1) -> {
                                             // atualiza a conta no BD com os novos dados:
                                             viewModel.atualizar(c);
                                             finish();
-                                            Toast.makeText(EditarContaActivity.this, "A Conta " + c.numero + " foi atualizada com sucesso", Toast.LENGTH_SHORT).show();
+                                            Toast.makeText(EditarContaActivity.this, getString(R.string.dialog_msg_sucesso_conta_atualizada, c.numero), Toast.LENGTH_SHORT).show();
                                         });
                                         // mostra o alerta na tela:
                                         confirmaAtualizacao.create().show();
                                     }else{
-                                        Toast.makeText(EditarContaActivity.this, "Digite um saldo com números", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(EditarContaActivity.this, R.string.msg_digite_saldo_com_numeros, Toast.LENGTH_SHORT).show();
                                     }
                                 }else {
-                                    Toast.makeText(EditarContaActivity.this, "É necessário informar um CPF de um cliente cadastrado", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(EditarContaActivity.this, R.string.msg_necessario_cadastrar_cliente_com_cpf, Toast.LENGTH_SHORT).show();
                                 }
                             });
                         }else {
-                            msg = "Digite um CPF válido";
+                            msg = getString(R.string.msg_cpf_valido);
                         }
 //                    }else {
 //                        msg = "Digite um nome com no mínimo 5 caracteres";
@@ -128,19 +128,19 @@ public class EditarContaActivity extends AppCompatActivity {
             // cria um alerta na tela ao clicar no botão para excluir a conta:
             AlertDialog.Builder confirmaExclusao = new AlertDialog.Builder(EditarContaActivity.this);
             // título do alerta:
-            confirmaExclusao.setTitle("EXCLUIR CONTA");
+            confirmaExclusao.setTitle(R.string.dialog_titulo_excluir_conta);
             // mensagem do alerta exibido:
-            confirmaExclusao.setMessage("Tem certeza que deseja excluir a conta " + c.numero + " ?");
+            confirmaExclusao.setMessage(getString(R.string.dialog_msg_certeza_excluir_conta,c.numero));
             // não fecha o alerta ao clicar fora dele (é preciso escolher uma opção do alerta):
             confirmaExclusao.setCancelable(false);
             // ao clicar no botão negativo do alerta, é cancelada a exclusão e retorna para a tela de edição de conta:
-            confirmaExclusao.setNegativeButton("CANCELAR", null);
+            confirmaExclusao.setNegativeButton(R.string.dialog_btn_negativo_cancelar, null);
             // ao clicar no botão positivo do alerta, a conta é excluída:
-            confirmaExclusao.setPositiveButton("SIM, EXCLUIR CONTA", (dialogInterface, i1) -> {
+            confirmaExclusao.setPositiveButton(R.string.dialog_msg_positiva_sim_excluir_conta, (dialogInterface, i1) -> {
                 // exclui a conta do banco de dados
                 viewModel.remover(c);
                 finish();
-                Toast.makeText(EditarContaActivity.this, "A Conta " + c.numero + " foi excluída com sucesso", Toast.LENGTH_SHORT).show();
+                Toast.makeText(EditarContaActivity.this, getString(R.string.msg_sucesso_conta_excluida, c.numero), Toast.LENGTH_SHORT).show();
             });
             // mostra o alerta na tela:
             confirmaExclusao.create().show();
