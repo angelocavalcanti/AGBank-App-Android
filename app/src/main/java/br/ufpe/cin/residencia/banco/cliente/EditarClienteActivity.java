@@ -68,25 +68,6 @@ public class EditarClienteActivity extends AppCompatActivity {
                     // ao clicar no botão positivo do alerta, o cliente é atualizado:
                     confirmaAtualizacao.setPositiveButton(R.string.dialog_btn_positivo_atualizar_cliente, (dialogInterface, i1) -> {
                         viewModel.atualizar(c);
-
-                        // ANGELO VERIFICAR ABAIXO
-
-                            viewModelConta.contas.observe(this, listaContas -> {
-                                if(listaContas != null){
-                                for(Conta conta : listaContas){
-                                    if(conta.cpfCliente.equals(cpf)) {
-                                        viewModelConta.contaAtual.observe(this, contaCliente -> {
-                                                contaCliente.nomeCliente = nomeCliente;
-                                        });
-                                    }
-                                }
-                                    listaContas = listaContas;
-                                }
-                            });
-
-
-                        // ANGELO VERIFICAR ACIMA
-
                         finish();
                         Toast.makeText(EditarClienteActivity.this, getString(R.string.msg_cliente_de_cpf_x_atualizado_sucesso, c.cpf), Toast.LENGTH_LONG).show();
                     });

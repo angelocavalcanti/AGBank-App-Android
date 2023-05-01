@@ -69,7 +69,7 @@
     <string name="label_numero_da_conta_origem">Número da Conta Origem</string>
     <string name="label_numero_da_conta_destino">Número da Conta Destino</string>
     <string name="label_valor">Valor</string>
-    <string name="placeholder_digite_o_valor_a_ser">Digite o valor a ser</string>
+    <string name="placeholder_digite_o_valor_a_ser">Digite o valor a ser&#160;</string>
     <string name="btn_realizar_operacao">Realizar Operação</string>
     <string name="radio_nome">Nome</string>
     <string name="radio_cpf">CPF</string>

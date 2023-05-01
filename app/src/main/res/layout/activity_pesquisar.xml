@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:padding="7dp"
     android:orientation="vertical">
 
@@ -10,7 +11,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="5dp"
-        android:hint="@string/msg_digite_termo_pesquisar" />
+        android:hint="@string/msg_digite_termo_pesquisar"
+        app:icon="@android:drawable/ic_menu_search"
+        />
 
     <RadioGroup
         android:layout_width="match_parent"
@@ -44,7 +47,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="5dp"
-        android:text="@string/btn_pesquisar" />
+        android:text="@string/btn_pesquisar"
+        android:layout_gravity="center"
+        app:icon="@drawable/baseline_search_24" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvResultado"

@@ -2,14 +2,16 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:padding="5dp"
-    android:orientation="vertical" >
+    android:orientation="vertical">
 
     <Button
         android:id="@+id/btnContas"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/btn_contas"
+        app:icon="@drawable/baseline_switch_account_24"
         android:layout_margin="3dp"
         android:textSize="24sp">
     </Button>
@@ -18,6 +20,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/btn_transferir"
+        app:icon="@drawable/baseline_currency_exchange_24"
         android:layout_margin="3dp"
         android:textSize="24sp">
     </Button>
@@ -26,6 +29,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/btn_debitar"
+        app:icon="@drawable/baseline_output_24"
         android:layout_margin="3dp"
         android:textSize="24sp">
     </Button>
@@ -34,23 +38,28 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/btn_creditar"
+        app:icon="@drawable/baseline_input_24"
         android:layout_margin="3dp"
         android:textSize="24sp">
     </Button>
+
+    <Button
+        android:id="@+id/btnClientes"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="3dp"
+        android:text="@string/btn_clientes"
+        app:icon="@drawable/baseline_groups_24"
+        android:textSize="24sp">
+    </Button>
+
     <Button
         android:id="@+id/btnPesquisar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/btn_pesquisar"
         android:layout_margin="3dp"
-        android:textSize="24sp">
-    </Button>
-    <Button
-        android:id="@+id/btnClientes"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/btn_clientes"
-        android:layout_margin="3dp"
+        app:icon="@drawable/baseline_search_24"
         android:textSize="24sp">
     </Button>
 
